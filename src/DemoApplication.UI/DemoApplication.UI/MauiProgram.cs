@@ -18,6 +18,7 @@ namespace DemoApplication.UI
 
             // Add device-specific services used by the DemoApplication.UI.Shared project
             builder.Services.AddSingleton<IFormFactor, FormFactor>();
+            builder.Services.AddTransient<IDeviceInteractions, DeviceInteractions>();
 
             builder.Services.AddMauiBlazorWebView();
 
