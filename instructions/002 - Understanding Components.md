@@ -127,5 +127,10 @@ Add a new Razor Component in `DemoApplication.UI.Shared/Pages` called `InteropEx
 After doing this, pdate the `NavMenu` under the `Layout` folder to include a new link to this item using the below markup.
 
 ```` razor
-
+<div class="nav-item px-3">
+    <NavLink class="nav-link" href="InteropExample">
+        <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Interop Example
+    </NavLink>
+</div>
+````
 
