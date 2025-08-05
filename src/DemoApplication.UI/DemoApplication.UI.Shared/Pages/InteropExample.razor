@@ -1,0 +1,45 @@
+﻿@page "/InteropExample"
+
+@inject IJSRuntime JSRuntime
+
+<PageTitle>Interop Example</PageTitle>
+
+<h1>Interop Example</h1>
+
+<p>
+	<button class="btn btn-primary" @onclick="TestJsInterop">Test JS Interop</button>
+</p>
+
+<p>
+	<button class="btn btn-primary" @onclick="TestJsInteropParameters">Test JS Interop w/ Parameters</button>
+</p>
+
+<p>
+	<button class="btn btn-primary" @onclick="TestJsInteropReceive">Test JS Interop w/ Return Value</button>
+</p>
+
+@if (!string.IsNullOrEmpty(FromJavascript))
+{
+	<p>The following was received from JS <strong>'@FromJavascript'</strong></p>
+}
+
+
+@code {
+
+	public string FromJavascript { get; set; } = null!;
+
+	private async Task TestJsInterop()
+	{
+		await JSRuntime.InvokeVoidAsync("demoMethod");
+	}
+
+	private async Task TestJsInteropParameters()
+	{
+		await JSRuntime.InvokeVoidAsync("alert", "I can even pass stuff!");
+	}
+
+	private async Task TestJsInteropReceive()
+	{
+		FromJavascript = await JSRuntime.InvokeAsync<string>("showPrompt", "Please provide a value to display");
+	}
+}
